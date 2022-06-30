@@ -18,11 +18,6 @@ app.get("/dados/:nome/:cargo", function(req,resp){
     resp.send("<h1>Ola sr(a). "+req.params.nome+"</h1><h2>Seu cargo é"+req.params.cargo+"</h2>");
 })
 
-// esta sempre deve ser a ultima linha quando usamos o express
-app.listen(8081, function(err){
-    console.log("Servidor funcionando na url http://localhost:8081");
-})
-
 //npm install ejs 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs')
@@ -37,3 +32,8 @@ consign().include('controller/routes').into(app);
 //npm install body-parser
 bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// esta sempre deve ser a ultima linha quando usamos o express
+app.listen(8081, function(err){
+    console.log("Servidor funcionando na url http://localhost:8081");
+});
