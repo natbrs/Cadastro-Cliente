@@ -5,9 +5,9 @@ module.exports = function(app){
 
     app.get("/cadastro", function(req, res){
         if(req.query.fail)
-            res.render('produto/Cadastro', { mensagem:'Cadastrado!'});
+            res.render('produto/Cadastro', {mensagem:'Cadastrado!'});
     else
-            res.render('produto/Cadastro', {mensagemLogin:null});
+            res.render('produto/Cadastro', {mensagem:null});
     })
 
     app.post('/cadastro/produto/edit/salvar', (req,res) => {
@@ -19,9 +19,9 @@ module.exports = function(app){
         };
         try{
             produtoBanco.updateProduto(produto);
-                res.render('produto/Sucesso', {mensagem: 'Alterado'});
+                res.render('produto/Sucesso', {mensagem:'Alterado'});
         }catch (error){
-                res.render('produto/EditProduto', {title: 'Edição Cadastro', mensagem: 'Erro no Cadastro!'});
+                res.render('produto/EditProduto', {title:'Edição Cadastro', mensagem:'Erro no Cadastro!'});
         }
     });
 
@@ -34,7 +34,7 @@ module.exports = function(app){
         produtoBanco.insertProduto(produto);
         }catch (error){
             console.log(error);
-                res.render('produto/Cadastro', {title: 'Cadastro', mensagem:'Erro no cadastro!'});
+                res.render('produto/Cadastro', {title:'Cadastro', mensagem:'Erro no cadastro!'});
         }
     });
 
@@ -61,8 +61,8 @@ module.exports = function(app){
     app.get('/edit/produto/:id', function(req, res, next){
         try{
             var id = req.params.id;
-            const  docs=await produtoBanco.getprodutoId(id);
-                res.render('produto/EditProduto', {mensagem:'', produto});
+            const  docs=await produtoBanco.getProdutoId(id);
+                res.render('produto/EditProduto', {mensagem:'Produto editado com sucesso!', produto});
         }catch (err){
             next(err);
         }
